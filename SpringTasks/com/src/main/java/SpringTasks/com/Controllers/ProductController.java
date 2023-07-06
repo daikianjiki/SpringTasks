@@ -29,4 +29,9 @@ public class ProductController {
     public ResponseEntity<?> getProductById(@PathVariable long id) {
         return productService.getProductById(id);
     }
+
+    @GetMapping("sorted")
+    public ResponseEntity<List<Product>> getAllProductsSorted() {
+        return productService.getAllProductsSorted();
+    }
 }

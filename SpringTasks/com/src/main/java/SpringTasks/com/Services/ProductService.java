@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -25,5 +27,10 @@ public class ProductService {
 
     public ResponseEntity<?> getProductById(long id) {
         return new ResponseEntity<>(productRepo.findById(id), HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Product>> getAllProductsSorted() {
+        List<Product> sortedProducts = productRepo.findAllSortedByPrice();
+        return new ResponseEntity<>(sortedProducts, HttpStatus.OK);
     }
 }
