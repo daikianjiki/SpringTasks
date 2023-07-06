@@ -29,7 +29,7 @@ public class ProductService {
         return new ResponseEntity<>(productRepo.findById(id), HttpStatus.OK);
     }
 
-    public ResponseEntity<List<Product>> getAllProductsSorted() {
+    public ResponseEntity<List<Product>> getAllSortedProducts() {
         List<Product> sortedProducts = productRepo.findAllSortedByPrice();
         return new ResponseEntity<>(sortedProducts, HttpStatus.OK);
     }

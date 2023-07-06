@@ -31,8 +31,8 @@ public class ProductController {
     }
 
     @GetMapping("sorted")
-    public ResponseEntity<List<Product>> getAllProductsSorted() {
-        return productService.getAllProductsSorted();
+    public ResponseEntity<List<Product>> getAllSortedProducts() {
+        return productService.getAllSortedProducts();
     }
 
     @GetMapping("filter")
