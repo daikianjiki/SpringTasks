@@ -22,4 +22,8 @@ public class ProductService {
     public ResponseEntity<List<Product>> getAllProducts() {
         return new ResponseEntity<>(productRepo.findAll(), HttpStatus.OK);
     }
+
+    public ResponseEntity<?> getProductById(long id) {
+        return new ResponseEntity<>(productRepo.findById(id), HttpStatus.OK);
+    }
 }
