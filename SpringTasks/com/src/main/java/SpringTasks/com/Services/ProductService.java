@@ -18,4 +18,8 @@ public class ProductService {
     public ResponseEntity<Product> createProduct(Product product) {
         return new ResponseEntity<>(productRepo.save(product), HttpStatus.CREATED);
     }
+
+    public ResponseEntity<List<Product>> getAllProducts() {
+        return new ResponseEntity<>(productRepo.findAll(), HttpStatus.OK);
+    }
 }
