@@ -33,4 +33,9 @@ public class ProductService {
         List<Product> sortedProducts = productRepo.findAllSortedByPrice();
         return new ResponseEntity<>(sortedProducts, HttpStatus.OK);
     }
+
+    public ResponseEntity<List<Product>> filterProductsByPriceRange(double minPrice, double maxPrice) {
+        List<Product> filteredProducts = productRepo.findByPriceBetween(minPrice, maxPrice);
+        return new ResponseEntity<>(filteredProducts, HttpStatus.OK);
+    }
 }

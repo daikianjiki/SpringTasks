@@ -34,4 +34,9 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllProductsSorted() {
         return productService.getAllProductsSorted();
     }
+
+    @GetMapping("filter")
+    public ResponseEntity<List<Product>> filterProductsByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {
+        return productService.filterProductsByPriceRange(minPrice, maxPrice);
+    }
 }

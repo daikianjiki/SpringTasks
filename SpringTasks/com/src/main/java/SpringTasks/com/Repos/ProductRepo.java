@@ -12,4 +12,6 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
 
     @Query("SELECT p FROM Product p ORDER BY p.price ASC")
     List<Product> findAllSortedByPrice();
+
+    List<Product> findByPriceBetween(double minPrice, double maxPrice);
 }
