@@ -39,4 +39,9 @@ public class ProductController {
     public ResponseEntity<List<Product>> filterProductsByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {
         return productService.filterProductsByPriceRange(minPrice, maxPrice);
     }
+
+    @GetMapping("count")
+    public ResponseEntity<Long> getProductCount() {
+        return productService.getProductCount();
+    }
 }

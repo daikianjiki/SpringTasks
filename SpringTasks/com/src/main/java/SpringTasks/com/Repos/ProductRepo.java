@@ -14,4 +14,7 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
     List<Product> findAllSortedByPrice();
 
     List<Product> findByPriceBetween(double minPrice, double maxPrice);
+
+    @Query("SELECT COUNT(*) FROM Product")
+    long countAllProducts();
 }

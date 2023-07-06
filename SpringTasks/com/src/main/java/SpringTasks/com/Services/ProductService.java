@@ -38,4 +38,9 @@ public class ProductService {
         List<Product> filteredProducts = productRepo.findByPriceBetween(minPrice, maxPrice);
         return new ResponseEntity<>(filteredProducts, HttpStatus.OK);
     }
+
+    public ResponseEntity<Long> getProductCount() {
+        long countedProducts = productRepo.countAllProducts();
+        return new ResponseEntity<>(countedProducts, HttpStatus.OK);
+    }
 }
