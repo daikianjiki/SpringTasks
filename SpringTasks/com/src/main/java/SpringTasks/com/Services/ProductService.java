@@ -4,12 +4,10 @@ import SpringTasks.com.Models.Product;
 import SpringTasks.com.Repos.ProductRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -26,7 +24,10 @@ public class ProductService {
     }
 
     public ResponseEntity<?> getProductById(long id) {
-        return new ResponseEntity<>(productRepo.findById(id), HttpStatus.OK);
+        if (productRepo.existsById(id)) {
+            return new ResponseEntity<>(productRepo.findById(id), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     public ResponseEntity<List<Product>> getAllSortedProducts() {
@@ -50,11 +51,24 @@ public class ProductService {
     }
 
     public ResponseEntity<Product> updateProduct(Product product, long id) {
-        Product updatedProduct = productRepo.findById(id).get();
-        updatedProduct.setName(product.getName());
-        updatedProduct.setPrice(product.getPrice());
-        updatedProduct.setDescription(product.getDescription());
-        productRepo.save(updatedProduct);
-        return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+        if (productRepo.existsById(id)) {
+            Product updatedProduct = productRepo.findById(id).get();
+            updatedProduct.setName(product.getName());
+            updatedProduct.setPrice(product.getPrice());
+            updatedProduct.setDescription(product.getDescription());
+            productRepo.save(updatedProduct);
+            return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<?> deleteProduct(long id) {
+        if (productRepo.existsById(id)) {
+            productRepo.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
