@@ -46,7 +46,15 @@ public class ProductService {
 
     public ResponseEntity<Product> searchProductsByName(String name) {
         Product productByName = productRepo.findProductByName(name);
-
         return new ResponseEntity<>(productByName, HttpStatus.OK);
+    }
+
+    public ResponseEntity<Product> updateProduct(Product product, long id) {
+        Product updatedProduct = productRepo.findById(id).get();
+        updatedProduct.setName(product.getName());
+        updatedProduct.setPrice(product.getPrice());
+        updatedProduct.setDescription(product.getDescription());
+        productRepo.save(updatedProduct);
+        return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }
 }

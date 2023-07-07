@@ -49,4 +49,9 @@ public class ProductController {
     public ResponseEntity<Product> searchProductsByName(@RequestParam String name) {
         return productService.searchProductsByName(name);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Product> updateProduct(@RequestBody Product product, @PathVariable long id) {
+        return productService.updateProduct(product, id);
+    }
 }
