@@ -17,4 +17,6 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
 
     @Query("SELECT COUNT(*) FROM Product")
     long countAllProducts();
+
+    Product findProductByName(String name);
 }

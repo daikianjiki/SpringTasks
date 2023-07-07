@@ -44,4 +44,9 @@ public class ProductController {
     public ResponseEntity<Long> getProductCount() {
         return productService.getProductCount();
     }
+
+    @GetMapping("search")
+    public ResponseEntity<Product> searchProductsByName(@RequestParam String name) {
+        return productService.searchProductsByName(name);
+    }
 }

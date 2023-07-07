@@ -43,4 +43,10 @@ public class ProductService {
         long countedProducts = productRepo.countAllProducts();
         return new ResponseEntity<>(countedProducts, HttpStatus.OK);
     }
+
+    public ResponseEntity<Product> searchProductsByName(String name) {
+        Product productByName = productRepo.findProductByName(name);
+
+        return new ResponseEntity<>(productByName, HttpStatus.OK);
+    }
 }
